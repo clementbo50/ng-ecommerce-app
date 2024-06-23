@@ -2,7 +2,7 @@ import { CartComponent } from './cart/cart.component';
 //fichier app.component.ts
 import { Component } from '@angular/core';
 import { ProductListComponent } from './product-list/product-list.component';
-import { TestComponent } from './test/test.component';
+
 
 
 @Component({
@@ -11,7 +11,7 @@ import { TestComponent } from './test/test.component';
   imports: [
     ProductListComponent,
     CartComponent,
-    TestComponent
+    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

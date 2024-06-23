@@ -19,7 +19,16 @@ export class ProductListComponent {
     { imageUrl: 'https://picsum.photos/200/300?grayscale', title: 'Product 2', description: 'Description of product 2', price: 20 },
     { imageUrl: 'https://picsum.photos/200/300?blur=2', title: 'Product 3', description: 'Description of product 3', price: 30 },
   ];
+
+  /**
+   * Ajoute le produit au panier.
+   * @param product - Le produit à ajouter.
+   */
+  addToCart(product: any) {
+     console.log('Produit ajouté au panier:', product);
+  }
   
-  list: string = 'Hello World!';
+  
 
 }
+

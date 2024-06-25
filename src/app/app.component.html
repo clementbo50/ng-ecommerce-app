@@ -1,4 +1,17 @@
-<app-product-list></app-product-list>
-
-<app-cart></app-cart>
+<div class="container">
+    <h1 class="text-center my-4">Boutique en Ligne</h1>
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Liste des produits -->
+        <!-- Lorsqu'un produit est ajouté au panier, l'événement "addToCart" est émis, et la méthode "handleAddToCart" du composant "AppComponent" 
+         est appelée pour ajouter le produit à la liste des articles achetés. -->
+        <app-product-list (addProductToCart)="addProductToCart($event)"></app-product-list>
+      </div>
+      <div class="col-md-4">
+        <!-- Panier d'achat -->
+        <!-- La liste des articles achetés est transmise au composant "app-cart" via l'attribut "cartItems". -->
+        <app-cart [cartItems]="cartItems" ></app-cart>
+      </div>
+    </div>
+</div>
 

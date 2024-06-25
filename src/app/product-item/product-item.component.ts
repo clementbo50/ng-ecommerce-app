@@ -1,6 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { HighlightAddedDirective } from '../highlight-added-directive.directive';
+
 
 /**
  * Composant représentant un produit.
@@ -10,35 +10,36 @@ import { HighlightAddedDirective } from '../highlight-added-directive.directive'
   standalone: true,
   imports: [
     CurrencyPipe,
-    HighlightAddedDirective
+    
   ],
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  /** URL de l'image du produit. */
-  @Input() imageUrl!: string;
-  /** Titre du produit. */
-  @Input() title!: string;
-  /** Description du produit. */
-  @Input() description!: string;
-  /** Prix du produit. */
-  @Input() price!: number;
-  /** Événement émis lorsque le produit est ajouté au panier. */
-  @Output() add = new EventEmitter<void>();
+  @Input() imageUrl!: string; // Reçoit l'URL de l'image du produit
+  @Input() title!: string; // Reçoit le titre du produit
+  @Input() description!: string; // Reçoit la description du produit
+  @Input() price!: number; // Reçoit le prix du produit
 
-  isAddedToCart: boolean = false;
+  @Output() add = new EventEmitter<any>(); // Émet un événement lorsqu'un produit est ajouté au panier
 
-  /**
-   * Ajoute le produit au panier.
-   */
+  //isAddedToCart: boolean = false;
 
+ 
   ngOnInit(): void {
     console.log(`ProductItemComponent pour ${this.title} a été initialisé`);
   }
   addToCart() {
-    this.isAddedToCart = true;
-    this.add.emit();
+    //this.isAddedToCart = true;
+    this.add.emit({
+      // Crée un objet produit et émet cet objet
+      imageUrl: this.imageUrl,
+      title: this.title,
+      description: this.description,
+      price: this.price
+      
+    });
+    
   }
 }
 

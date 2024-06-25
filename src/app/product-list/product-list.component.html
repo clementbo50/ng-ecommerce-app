@@ -12,7 +12,7 @@
           [title]="product.title" 
           [description]="product.description" 
           [price]="product.price"
-          (add)="addToCart(product)">
+          (add)="handleAddToCart($event)">
         </app-product-item>
       </div>
     </div>

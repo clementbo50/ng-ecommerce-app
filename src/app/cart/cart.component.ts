@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -10,12 +10,24 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class CartComponent {
-  cartItems = [
-    { id: 1, name: 'Product 1', price: 100, quantity: 2 },
-    { id: 2, name: 'Product 2', price: 200, quantity: 1 }
-  ];
+  @Input() cartItems!: any[];
+ 
 
-  getTotal() {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+/* Méthode pour supprimer un produit du panier */
+removeFromCart(product: any) {
+  const productIndex = this.cartItems.findIndex(item => item.title === product.title);
+
+  if (productIndex > -1) {
+    this.cartItems[productIndex].quantity -= 1;
+    if (this.cartItems[productIndex].quantity === 0) {
+      this.cartItems.splice(productIndex, 1);
+    }
   }
+}
+
+/* Calcul du prix total du panier */
+get totalPrice(): number {
+  return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+}
+  
 }

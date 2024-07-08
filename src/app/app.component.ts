@@ -5,6 +5,7 @@
 import { CartComponent } from './cart/cart.component';
 import { Component } from '@angular/core';
 import { ProductListComponent } from './product-list/product-list.component';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -20,22 +21,18 @@ export class AppComponent {
   /**
    * Liste des articles achetés
    */
-  cartItems: any[] = [];
+  
+
+  constructor(private cartService: CartService) {}
+
 
   /**
-   * Ajoute un produit au panier et émet un événement avec le produit ajouté
-   * @param {any} product - Le produit à ajouter au panier
+   * Ajoute un produit au panier
+   * @param {any} product - Le produit à ajouter
    */
   addProductToCart(product: any) {
-    const existingProduct = this.cartItems.find(item => item.title === product.title);
-
-    if (existingProduct) {
-      // Si le produit est déjà dans le panier, augmenter la quantité
-      existingProduct.quantity += 1;
-    } else {
-      // Si le produit n'est pas dans le panier, l'ajouter avec une quantité de 1
-      this.cartItems.push({ ...product, quantity: 1 });
-    }
+    this.cartService.addProduct(product);
+    console.log()
   }
 
 }

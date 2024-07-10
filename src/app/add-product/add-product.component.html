@@ -1,1 +1,43 @@
-<p>add-product works!</p>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 100%; max-width: 800px;">
+      <h2 class="text-center mb-4">Ajouter un nouveau produit</h2>
+      <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Titre:</label>
+          <input id="title" formControlName="title" name="title" class="form-control form-control-sm" required>
+          <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched" class="text-danger">
+            <div *ngIf="productForm.get('title')?.hasError('required')">Le titre est requis.</div>
+            <div *ngIf="productForm.get('title')?.hasError('minlength')">Le titre doit contenir au moins 5 caractères.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea id="description" formControlName="description" name="description" class="form-control form-control-sm" required></textarea>
+          <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched" class="text-danger">
+            <div *ngIf="productForm.get('description')?.hasError('required')">La description est requise.</div>
+            <div *ngIf="productForm.get('description')?.hasError('minlength')">La description doit contenir au moins 5 caractères.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Prix:</label>
+          <input id="price" type="number" formControlName="price" name="price" class="form-control form-control-sm" required>
+          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+            <div *ngIf="productForm.get('price')?.hasError('required')">Le prix est requis.</div>
+            <div *ngIf="productForm.get('price')?.hasError('min')">Le prix doit être positif.</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">URL de l'image:</label>
+          <input id="imageUrl" formControlName="imageUrl" name="imageUrl" class="form-control form-control-sm" required>
+          <div *ngIf="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched" class="text-danger">
+            <div *ngIf="productForm.get('imageUrl')?.hasError('required')">L'image est requise.</div>
+            <div *ngIf="productForm.get('imageUrl')?.hasError('pattern')">L'image doit contenir une URL valide.</div>
+          </div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="submit" [disabled]="!productForm.valid" class="btn btn-primary">Ajouter le produit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

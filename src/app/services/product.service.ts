@@ -18,5 +18,8 @@ export class ProductService {
     return this.products;
   }
 
-  // Autres méthodes liées aux produits à venir ...
+  addProduct(product: any) {
+    product.id = this.products.length + 1;
+    this.products.push(product);
+  }
 }

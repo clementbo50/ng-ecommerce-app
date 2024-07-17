@@ -1,15 +1,16 @@
 // cart.service.ts
 import { Injectable } from '@angular/core';
+import { CartItem } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartItems: any[] = [];
+  private cartItems: CartItem[] = []; //On reçoit la liste des articles dans le panier avec le type CartItem
 
   constructor() {}
 
-  addProduct(product: any) {
+  addProduct(product: CartItem) {
     const existingProduct = this.cartItems.find(item => item.title === product.title);
 
     if (existingProduct) {
@@ -22,7 +23,7 @@ export class CartService {
     console.log(this.cartItems);
   }
 
-  removeProduct(product: any) {
+  removeProduct(product: CartItem) {
     const productIndex = this.cartItems.findIndex(item => item.title === product.title);
 
     if (productIndex > -1) {
@@ -37,7 +38,7 @@ export class CartService {
     return this.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   }
 
-  getCartItems(): any[] {
+  getCartItems(): CartItem[] {
     return this.cartItems;
   }
 }

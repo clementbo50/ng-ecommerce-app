@@ -1,5 +1,25 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4" style="width: 100%; max-width: 800px;">
+<div class="container">
+  <div class="row">
+    <!-- Colonne pour l'aperçu du produit -->
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Aperçu du produit</h2>
+      <div *ngIf="productPreview$ | async as product">
+        <div class="card">
+          <img [src]="product.imageUrl" class="card-img-top" alt="Image du produit" *ngIf="product.imageUrl">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text"><strong>Prix: </strong>{{ product.price | currency }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+   
+
+    <!-- Colonne pour le formulaire d'ajout de produit -->
+    <div class="col-md-6 mt-5 border" >
       <h2 class="text-center mb-4">Ajouter un nouveau produit</h2>
       <form [formGroup]="productForm" (ngSubmit)="addProduct()">
         <div class="mb-3">
@@ -40,4 +60,4 @@
       </form>
     </div>
   </div>
-  
+</div>

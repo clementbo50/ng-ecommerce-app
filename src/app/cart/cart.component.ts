@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/product';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { CartService } from '../services/cart.service';
   imports: [CommonModule]
 })
 export class CartComponent {
-  cartItems: any[] = [];
+  cartItems: CartItem[] = [];
 
   constructor(private cartService: CartService) {
     this.cartItems = this.cartService.getCartItems();
@@ -19,7 +20,7 @@ export class CartComponent {
   }
   
 /* Méthode pour supprimer un produit du panier */
-removeFromCart(product: any) {
+removeFromCart(product: CartItem) {
   this.cartService.removeProduct(product);
   
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../services/product.service';
+import { Product } from '../models/product';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductListComponent implements OnInit {
   
-  products: any[] = [];
+  products: Product[] = [];
 
   // Emit un événement lorsque le produit est ajouté au panier
   // (Event émis lorsque le produit est ajouté au panier)
@@ -30,9 +31,9 @@ export class ProductListComponent implements OnInit {
 
   /**
    * Ajoute un produit au panier et émet un événement avec le produit ajouté
-   * @param {any} product - Le produit à ajouter au panier
+   * @param {Product} product - Le produit à ajouter au panier
    */
-  handleAddToCart(product: any) {
+  handleAddToCart(product: Product) {
      this.addProductToCart.emit(product);
   }
   

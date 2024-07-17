@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { CartComponent } from '../cart/cart.component';
+import { CartItem } from '../models/product';
 
 @Component({
   selector: 'app-products-cart',
   standalone: true,
   imports: [
     ProductListComponent,
-    CartComponent
+    CartComponent,
+
   ],
   templateUrl: './products-cart.component.html',
   styleUrl: './products-cart.component.css'
@@ -19,10 +21,10 @@ export class ProductsCartComponent {
 
   /**
    * Ajoute un produit au panier
-   * @param {any} product - Le produit à ajouter
+   * @param {CartItem} product - Le produit à ajouter
    */
-  addProductToCart(product: any) {
+  addProductToCart(product: CartItem) {
     this.cartService.addProduct(product);
-    console.log()
+ 
   }
 }

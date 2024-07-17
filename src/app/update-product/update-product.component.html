@@ -1,0 +1,40 @@
+<!-- update-product.component.html -->
+<div class="container">
+    <h2 class="text-center mb-4">Mettre à jour le produit</h2>
+    <form [formGroup]="updateForm" (ngSubmit)="updateProduct()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Titre:</label>
+        <input id="title" formControlName="title" name="title" class="form-control" required>
+        <div *ngIf="updateForm.get('title')?.invalid && updateForm.get('title')?.touched" class="text-danger">
+          <div *ngIf="updateForm.get('title')?.hasError('required')">Le titre est requis.</div>
+          <div *ngIf="updateForm.get('title')?.hasError('minlength')">Le titre doit contenir au moins 5 caractères.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea id="description" formControlName="description" name="description" class="form-control" required></textarea>
+        <div *ngIf="updateForm.get('description')?.invalid && updateForm.get('description')?.touched" class="text-danger">
+          <div *ngIf="updateForm.get('description')?.hasError('required')">La description est requise.</div>
+          <div *ngIf="updateForm.get('description')?.hasError('minlength')">La description doit contenir au moins 5 caractères.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Prix:</label>
+        <input id="price" type="number" formControlName="price" name="price" class="form-control" required>
+        <div *ngIf="updateForm.get('price')?.invalid && updateForm.get('price')?.touched" class="text-danger">
+          <div *ngIf="updateForm.get('price')?.hasError('required')">Le prix est requis.</div>
+          <div *ngIf="updateForm.get('price')?.hasError('min')">Le prix doit être positif.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">URL de l'image:</label>
+        <input id="imageUrl" formControlName="imageUrl" name="imageUrl" class="form-control" required>
+        <div *ngIf="updateForm.get('imageUrl')?.invalid && updateForm.get('imageUrl')?.touched" class="text-danger">
+          <div *ngIf="updateForm.get('imageUrl')?.hasError('required')">L'image est requise.</div>
+          <div *ngIf="updateForm.get('imageUrl')?.hasError('pattern')">L'image doit contenir une URL valide.</div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!updateForm.valid" class="btn btn-primary">Mettre à jour</button>
+    </form>
+  </div>
+  

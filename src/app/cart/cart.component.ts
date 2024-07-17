@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+<<<<<<< Updated upstream
+=======
+import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/product';
+>>>>>>> Stashed changes
 
 
 @Component({
@@ -10,10 +15,15 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class CartComponent {
+<<<<<<< Updated upstream
   @Input() cartItems!: any[];
  
+=======
+  cartItems: CartItem[] = [];
+>>>>>>> Stashed changes
 
 /* Méthode pour supprimer un produit du panier */
+<<<<<<< Updated upstream
 removeFromCart(product: any) {
   const productIndex = this.cartItems.findIndex(item => item.title === product.title);
 
@@ -23,6 +33,11 @@ removeFromCart(product: any) {
       this.cartItems.splice(productIndex, 1);
     }
   }
+=======
+removeFromCart(product: CartItem) {
+  this.cartService.removeProduct(product);
+  
+>>>>>>> Stashed changes
 }
 
 /* Calcul du prix total du panier */

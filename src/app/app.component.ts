@@ -2,17 +2,30 @@
  * Fichier app.component.ts
  * Composant racine de l'application
  */
-import { CartComponent } from './cart/cart.component';
+
 import { Component } from '@angular/core';
+<<<<<<< Updated upstream
 import { ProductListComponent } from './product-list/product-list.component';
+=======
+import { NavbarComponent } from "./navbar/navbar.component";
+import { RouterOutlet } from '@angular/router';
+>>>>>>> Stashed changes
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+<<<<<<< Updated upstream
     ProductListComponent,
     CartComponent,
   ],
+=======
+    NavbarComponent,
+    RouterOutlet,
+  
+],
+>>>>>>> Stashed changes
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

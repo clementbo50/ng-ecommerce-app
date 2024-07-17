@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { CommonModule } from '@angular/common';
+<<<<<<< Updated upstream
+=======
+import { ProductService } from '../services/product.service';
+import { Product } from '../models/product';
+>>>>>>> Stashed changes
 
 
 @Component({
@@ -15,6 +20,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductListComponent {
   
+<<<<<<< Updated upstream
   products = [
     { imageUrl: 'https://picsum.photos/200/300', title: 'Produit 1', description: 'Description de Produit 1', price: 10 },
     { imageUrl: 'https://picsum.photos/200/300?grayscale', title: 'Produit 2', description: 'Description de Produit 2', price: 20 },
@@ -23,6 +29,9 @@ export class ProductListComponent {
     { imageUrl: 'https://picsum.photos/200/300?blur=8', title: 'Produit 5', description: 'Description de Produit 5', price: 50 },
     
   ];
+=======
+  products: Product[] = [];
+>>>>>>> Stashed changes
 
   // Emit un événement lorsque le produit est ajouté au panier
   // (Event émis lorsque le produit est ajouté au panier)
@@ -32,9 +41,9 @@ export class ProductListComponent {
   
   /**
    * Ajoute un produit au panier et émet un événement avec le produit ajouté
-   * @param {any} product - Le produit à ajouter au panier
+   * @param {Product} product - Le produit à ajouter au panier
    */
-  handleAddToCart(product: any) {
+  handleAddToCart(product: Product) {
      this.addProductToCart.emit(product);
   }
   

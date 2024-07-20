@@ -5,7 +5,7 @@
 <!-- Utilise l'événement (add) pour ajouter le produit au panier. -->
 <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4 mb-2" *ngFor="let product of products">
+      <div class="col-md-6 col-lg-4 mb-2" *ngFor="let product of products$ | async">
         <app-product-item
           class="mx-auto"
           [imageUrl]="product.imageUrl" 
@@ -14,6 +14,10 @@
           [price]="product.price"
           (add)="handleAddToCart($event)">
         </app-product-item>
+      </div>
+      <div *ngIf="(products$ | async)?.length === 0">
+        <h4 class="text-center">Il n'y a plus de produit en vente  😔 </h4>
+
       </div>
     </div>
   </div>

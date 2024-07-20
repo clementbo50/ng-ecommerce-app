@@ -5,6 +5,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProductTableComponent } from './product-table/product-table.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 
+
+
 export const routes: Routes = [
     { path: 'boutique', component: ProductsCartComponent },
     { path: 'add-product', component: AddProductComponent },

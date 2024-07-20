@@ -4,6 +4,8 @@ import { ProductListComponent } from '../product-list/product-list.component';
 import { CartComponent } from '../cart/cart.component';
 import { CartItem } from '../models/product';
 
+
+
 @Component({
   selector: 'app-products-cart',
   standalone: true,
@@ -27,4 +29,6 @@ export class ProductsCartComponent {
     this.cartService.addProduct(product);
  
   }
+
+  
 }

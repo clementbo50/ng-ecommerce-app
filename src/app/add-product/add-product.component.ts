@@ -23,8 +23,7 @@ export class AddProductComponent implements OnInit {
   urlRegex!: RegExp;
   productPreview$!: Observable<Product>;
 
-
-  constructor( private fb: FormBuilder, private productService: ProductService, private router: Router) {}
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
@@ -33,22 +32,29 @@ export class AddProductComponent implements OnInit {
       description: ['Description par défaut', [Validators.required, Validators.minLength(5)]],
       price: [0.10, [Validators.required, Validators.min(0.01)]],
       imageUrl: ['https://via.placeholder.com/150', [Validators.required, Validators.pattern(this.urlRegex)]]
-    }, {updateOn: 'change'});
+    }, { updateOn: 'change' });
 
     this.productPreview$ = this.productForm.valueChanges.pipe(
       startWith(this.productForm.value),
       tap(() => console.log(this.productForm.value)),
-    )
-
-
-
+      
+    );
   }
 
   addProduct() {
+    // Vérifie si le formulaire est valide
     if (this.productForm.valid) {
-      this.productService.addProduct(this.productForm.value);
-      this.productForm.reset();
-      this.router.navigate(['/boutique']);
+      // Appelle le service pour ajouter un produit en passant les valeurs du formulaire
+      this.productService.addProduct(this.productForm.value).pipe(
+        // Réinitialise le formulaire après l'ajout du produit
+        tap(() => this.productForm.reset()),
+        // Redirige l'utilisateur vers la page 'boutique' après l'ajout du produit
+        tap(() => this.router.navigate(['/boutique'])),
+      ).subscribe(); // S'abonne pour déclencher la chaîne d'observables
+    } else {
+      // Redirige vers la page 'add-product' si le formulaire n'est pas valide
+      this.router.navigate(['/add-product']);
     }
   }
+  
 }

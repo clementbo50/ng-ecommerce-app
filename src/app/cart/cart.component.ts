@@ -1,7 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.service';
 import { CartItem } from '../models/product';
+
+
 
 
 @Component({
@@ -14,7 +16,7 @@ import { CartItem } from '../models/product';
 export class CartComponent {
   cartItems: CartItem[] = [];
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService ) {
     this.cartItems = this.cartService.getCartItems();
     
   }
@@ -25,9 +27,12 @@ removeFromCart(product: CartItem) {
   
 }
 
+
+
 /* Calcul du prix total du panier */
 get totalPrice(): number {
   return this.cartService.getTotalPrice();
 }
-  
+
+   
 }

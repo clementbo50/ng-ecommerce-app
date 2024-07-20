@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../models/product';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,4 +42,8 @@ export class CartService {
   getCartItems(): CartItem[] {
     return this.cartItems;
   }
+
+
+
+  
 }

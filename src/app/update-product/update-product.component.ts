@@ -30,26 +30,19 @@ export class UpdateProductComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-     const productId = Number(this.route.snapshot.paramMap.get('id'));
-     this.product = this.productService.getProductById(productId);
-
-   
-
-      if(this.product) {
+    const productId = Number(this.route.snapshot.paramMap.get('id'));
+    this.productService.getProductById(productId).subscribe(
+      (product: Product) => {
+        this.product = product;
         this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
         this.updateForm = this.fb.group({
-          
           title: [this.product.title, [Validators.required, Validators.minLength(5)]],
           description: [this.product.description, [Validators.required, Validators.minLength(5)]],
           price: [this.product.price, [Validators.required, Validators.min(0.01)]],
           imageUrl: [this.product.imageUrl, [Validators.required, Validators.pattern(this.urlRegex)]]
         });
-      } else {
-        // Si le produit n'existe pas on redirige vers la page des produits
-        this.router.navigate(['/my-products']);
-      }
-    
+      },
+    );
   }
 
   updateProduct() {
@@ -58,10 +51,11 @@ export class UpdateProductComponent implements OnInit {
         ...this.product,
         ...this.updateForm.value
       };
-      console.table(updatedProduct);
-      console.table(this.product);
-      this.productService.updateProduct(updatedProduct);
-      this.router.navigate(['/my-products']);
+     ;
+      this.productService.updateProduct(updatedProduct).subscribe(
+        () => this.router.navigate(['/my-products']),
+      );
+      
     }
   }
 

@@ -4,6 +4,7 @@
     title!: string;
     description!: string;
     price!: number;
+    hidden?: boolean;
   }
   
   export class CartItem extends Product {

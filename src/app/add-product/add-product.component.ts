@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { Router } from '@angular/router';
 import { map, startWith, Observable, tap } from 'rxjs';
 import { Product } from '../models/product';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-add-product',
@@ -23,7 +24,7 @@ export class AddProductComponent implements OnInit {
   urlRegex!: RegExp;
   productPreview$!: Observable<Product>;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {}
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/;
@@ -44,8 +45,9 @@ export class AddProductComponent implements OnInit {
   addProduct() {
     // Vérifie si le formulaire est valide
     if (this.productForm.valid) {
+      const userId = this.authService.getUserId();
       // Appelle le service pour ajouter un produit en passant les valeurs du formulaire
-      this.productService.addProduct(this.productForm.value).pipe(
+      this.productService.addProduct({ ...this.productForm.value, userId }).pipe(
         // Réinitialise le formulaire après l'ajout du produit
         tap(() => this.productForm.reset()),
         // Redirige l'utilisateur vers la page 'boutique' après l'ajout du produit

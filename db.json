@@ -1,12 +1,69 @@
 {
+  "users": [
+    {
+      "email": "admin@admin.fr",
+      "password": "$2a$10$ei/aSdiwYxUo5238RXVsMugk0kwhd81L18C1xe6vjN8sFXrsc6HVu",
+      "id": 1
+    },
+    {
+      "email": "user@user.fr",
+      "password": "$2a$10$wb3WNQrEFYQw.x48nFijfu0QZRiPOSbxLMLDp81fqp3WSuXL43ACe",
+      "id": 2
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$2EdxjkYu5kIRRAsp/iod0eteECZMmHxw5wHWSi2dlaE268T5wFBSG",
+      "id": 3
+    }
+  ],
   "products": [
     {
-      "title": "Titre par défauteeeeex",
+      "title": "Titre par défaut",
       "description": "Description par défaut",
       "price": 0.1,
       "imageUrl": "https://via.placeholder.com/150",
-      "id": 1
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "title": "Titre par défaut",
+      "description": "Description par défaut",
+      "price": 0.1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "title": "Titre par défaut",
+      "description": "Description par défaut",
+      "price": 0.1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "title": "Titre par défaut",
+      "description": "Description par défaut",
+      "price": 0.1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "title": "Titre par défaut",
+      "description": "Description par défaut",
+      "price": 0.1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "userId": 1,
+      "id": 6
+    },
+    {
+      "title": "Titre par défaut",
+      "description": "Description par défaut",
+      "price": 0.1,
+      "imageUrl": "https://via.placeholder.com/150",
+      "userId": 2,
+      "id": 7
     }
   ]
-  
 }

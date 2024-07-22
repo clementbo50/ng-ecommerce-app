@@ -6,6 +6,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { UpdateProductComponent } from '../update-product/update-product.component';
 import { map, Observable, tap } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product-table',
@@ -32,13 +33,14 @@ export class ProductTableComponent implements OnInit {
    * @param productService Le service de gestion des produits.
    * @param router Le router de l'application.
    */
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(private productService: ProductService, private router: Router, private authService: AuthService) {}
 
   /**
    * Initialise le composant.
    */
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts();
+    const userId = this.authService.getUserId();
+    this.products$ = this.productService.getProductsByUserId(userId);
   }
 
   

@@ -15,12 +15,17 @@ export class ProductService {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
-
+  
   getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
-  addProduct(formValue: { title: string, description: string, price: number, imageUrl: string }): Observable<Product> {
+  getProductsByUserId(userId: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}?userId=${userId}`);
+  }
+  
+
+  addProduct(formValue: { title: string, description: string, price: number, imageUrl: string, userId: number }): Observable<Product> {
     return this.getProducts().pipe(
       map(products => {
         const maxId = products.length > 0 ? Math.max(...products.map(p => p.id)) : 0;
